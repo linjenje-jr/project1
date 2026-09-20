@@ -1,0 +1,10 @@
+fuction:
+withdraw 
+deposit
+check balance 
+
+varible:
+balance(float)
+password(string)
+amount(float)
+
