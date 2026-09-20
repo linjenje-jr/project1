@@ -27,19 +27,30 @@ def withdraw():
     print(f'congrats {name}, you have withdraw {amount_with} tzs. your new balance is {balance} tzs ')
 def log_in():
     verify_pass()
-    services=['1.Balance','3.Withdraw','2.Deposit']
-    services.sort()
-    print('select the service number below')
-    for Service in services:
-        print(f'\n{Service}')
-    service = input()
-    if service == '1':
-        check_balance()
-    elif service == '2':
-        deposit()
-    elif service == '3':
-        withdraw()
-    else:
-        print('unrecorgnized service')
-        exit()
-log_in()
+    services=['1.Balance','3.Withdraw','2.Deposit','4.to stop']
+    while True:
+        services.sort()
+        print('select the service number below')
+        for Service in services:
+            print(f'\n{Service}')
+        service = input()
+        if service == '1':
+            check_balance()
+            break
+        elif service == '2':
+            deposit()
+            break
+        elif service == '3':
+            withdraw()
+            break
+        elif service == '4':
+            exit()
+        else:
+            print('unrecorgnized service')
+        
+        
+while True:
+    log_in()
+    again = input('to continue with other services press 1. to stop press 2\n')
+    if again == '2':
+        break
