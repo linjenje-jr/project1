@@ -1,14 +1,20 @@
 balance = 80
 
 name = input('enter ur name ')
-password = input('enter pass')
 
 def verify_pass():
+    password = input('enter pass')
     if password == '1234':
         print('password verfyed')
-    elif password != '1234' :
-        print('Access Denide')
-        exit()
+    else:
+        for t in range(2):
+            print('invaild password')
+            password = input('enter pass')
+            if password == '1234':
+                print('password verfyed')
+                break
+                print('Access Denide')
+                exit()
 
 def check_balance():
     return print(f"hello! {name} your balance is {balance} ")
@@ -33,30 +39,30 @@ def log_in():
         print('select the service number below')
         for Service in services:
             print(f'\n{Service}')
-        service = int(input())
+        service = input()
         match service:
-            case 1:
+            case '1':
                 check_balance()
                 break
-            case 2:
+            case '2':
                 deposit()
                 break
-            case 3 :
+            case '3':
                 withdraw()
                 break
-            case 4 :
+            case '4':
+                print('thank you for using our services')
                 exit()
             case _ :
                 print('unrecorgnized service')
         
         
+log_in()
 while True:
-    log_in()
-    while True:
-        again = input('to continue with other services press 1. to stop press 2\n')
-        if again == '2':
-            exit()
-        elif again == '1':
-            log_in()
-        else:
-            print('error')
+    again = input('to continue with other services press 1. to stop press 2\n')
+    if again == '2':
+        break
+    elif again == '1':
+        log_in()
+    else:
+        print('error')
