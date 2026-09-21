@@ -33,24 +33,30 @@ def log_in():
         print('select the service number below')
         for Service in services:
             print(f'\n{Service}')
-        service = input()
-        if service == '1':
-            check_balance()
-            break
-        elif service == '2':
-            deposit()
-            break
-        elif service == '3':
-            withdraw()
-            break
-        elif service == '4':
-            exit()
-        else:
-            print('unrecorgnized service')
+        service = int(input())
+        match service:
+            case 1:
+                check_balance()
+                break
+            case 2:
+                deposit()
+                break
+            case 3 :
+                withdraw()
+                break
+            case 4 :
+                exit()
+            case _ :
+                print('unrecorgnized service')
         
         
 while True:
     log_in()
-    again = input('to continue with other services press 1. to stop press 2\n')
-    if again == '2':
-        break
+    while True:
+        again = input('to continue with other services press 1. to stop press 2\n')
+        if again == '2':
+            exit()
+        elif again == '1':
+            log_in()
+        else:
+            print('error')
