@@ -14,8 +14,8 @@ def account_():
                 if password == '1234':
                     print('password verfyed')
                     break
-                    print('Access Denide')
-                    exit()
+            print('Access Denide')
+            exit()
 
     def check_balance():
         return print(f"hello! {name} your balance is {balance} ")
