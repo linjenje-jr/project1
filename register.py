@@ -32,55 +32,50 @@ def register():
     accounts[account_name] = account_password
     balance[account_name] = 0
 
-    while True:
-        again = input('to continue with other services press 1. to stop press 2\n')
-        if again == '2':
-            break
-        elif again == '1':
-            log_in()
-        else:
-            print('error')
-
+   
 
 def open_account():
-    account = input('press1 to create  account or press 2 to log in\n')
-    match account:
-        case '1':
-            register()
+    while True:
+        account = input('press1 to create  account or press 2 to log in\n')
+        match account:
+            case '1':
+                register()
+                open_account()
+
+            case'2':
+                global name
+                name = input('enter your account name')
+                    
+            case _:
+                print('unrecorgnized service')
+                open_account()
+
+            
+        if name in accounts:
+            print(f'account found for {name}')
+        elif name in blocked_accounts:
+            print('your account is blocked, please contact the bank costumer care for more details')
+            open_account()
+        else:
+            print('account not found, please create an account')
             open_account()
 
-        case'2':
-            global name
-            name = input('enter your account name')
+        password = input('enter password')
+        if password == accounts[name]:
+            print(f'wellcome {name}, you have login your account')
+            log_in()
+        else:
+            for times in range(3):
+                print('inviald password')
+                password = input('enter password')
+                if password == accounts[name]:
+                    print(f'wellcome {name}, you have login your account')
+                    log_in()
+                    break
                 
-        case _:
-            print('unrecorgnized service')
-            open_account()
-
-        
-    if name in accounts:
-        print(f'account found for {name}')
-    elif name in blocked_accounts:
-        print('your account is blocked, please contact the bank costumer care for more details')
-        open_account()
-    else:
-        print('account not found, please create an account')
-        open_account()
-
-    password = input('enter password')
-    if password == accounts[name]:
-        print(f'wellcome {name}, you have login your account')
-    else:
-        for times in range(3):
-            print('inviald password')
-            password = input('enter password')
-            if password == accounts[name]:
-                print(f'wellcome {name}, you have login your account')
-                break
             
             print('access denide, youe account is blocked, please contact the bank costumer care for more details')
             blocked_accounts[name] = accounts.pop(name)
-            open_account()
                 
 def log_in():
     services=['1.Balance','3.Withdraw','2.Deposit','4.to stop']
@@ -105,10 +100,19 @@ def log_in():
                 open_account()
             case _ :
                 print('unrecorgnized service')
-    print('welcome again to our bank') 
-
+    print('welcome again to our bank')
+    
+    again = input('to continue with other services press 1. to stop press 2\n')
+    if again == '2':
+        print('thank you for using our services')
+        open_account()
+    elif again == '1':
+        log_in()
+    else:
+        print('error')
 while True:
     open_account()
     log_in()
-
+    
+ 
 
