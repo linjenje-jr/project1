@@ -8,7 +8,7 @@ match op:
 
 
   
-case 2:
+case 2
     sub = a-b
     print(sub)
 
