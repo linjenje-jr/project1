@@ -1,6 +1,6 @@
 #from bank2 import account_
-accounts={}
-blocked_accounts={}
+accounts = {}
+blocked_accounts = {}
 balance = {}
 
 def check_balance():
@@ -22,17 +22,24 @@ def withdraw():
 
     print(f'congrats {name}, you have withdraw {amount_with} tzs. your new balance is {balance[name]} tzs ')
 
+def transfer():
+    global balance
+    reciver_account = input('enter account name\n')
+    transfer_amount = float(input('enter amount transfered'))
+    balance[reciver_account] = balance[reciver_account] + transfer_amount
+    balance[name] = balance[name] - transfer_amount
+
+    print(f'congrats {name}, you have successfully transfered {reciver_account} tzs to {reciver_account},your new balance is {balance[name]tzs}')
+
 def register():
     global accounts
     global balance
 
-    account_name = input('enter your name ')
+    account_name = input('enter your name\n ')
     account_password = input('enter your password ')
     print(f'account created for {account_name}')
     accounts[account_name] = account_password
     balance[account_name] = 0
-
-   
 
 def open_account():
     while True:
@@ -44,8 +51,8 @@ def open_account():
 
             case'2':
                 global name
-                name = input('enter your account name')
-                    
+                name = input('enter your account name\n')
+
             case _:
                 print('unrecorgnized service')
                 open_account()
@@ -60,14 +67,14 @@ def open_account():
             print('account not found, please create an account')
             open_account()
 
-        password = input('enter password')
+        password = input('enter password\n')
         if password == accounts[name]:
             print(f'wellcome {name}, you have login your account')
             log_in()
         else:
             for times in range(3):
                 print('inviald password')
-                password = input('enter password')
+                password = input('enter password\n')
                 if password == accounts[name]:
                     print(f'wellcome {name}, you have login your account')
                     log_in()
@@ -78,7 +85,7 @@ def open_account():
             blocked_accounts[name] = accounts.pop(name)
                 
 def log_in():
-    services=['1.Balance','3.Withdraw','2.Deposit','4.to stop']
+    services=['1.Balance','3.Withdraw','2.Deposit','4.Transfer','5.to stop']
     while True:
         services.sort()
         print('select the service number below')
@@ -95,7 +102,12 @@ def log_in():
             case '3':
                 withdraw()
                 break
+
             case '4':
+                transfer()
+                break
+
+            case '5':
                 print('thank you for using our services')
                 open_account()
             case _ :
@@ -110,6 +122,7 @@ def log_in():
         log_in()
     else:
         print('error')
+
 while True:
     open_account()
     log_in()
