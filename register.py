@@ -29,17 +29,21 @@ def transfer():
     balance[reciver_account] = balance[reciver_account] + transfer_amount
     balance[name] = balance[name] - transfer_amount
 
-    print(f'congrats {name}, you have successfully transfered {reciver_account} tzs to {reciver_account},your new balance is {balance[name]tzs}')
+    print(f'congrats {name}, you have successfully transfered {reciver_account} tzs to {reciver_account},your new balance is {balance[name]}tzs')
 
 def register():
     global accounts
     global balance
 
     account_name = input('enter your name\n ')
-    account_password = input('enter your password ')
-    print(f'account created for {account_name}')
-    accounts[account_name] = account_password
-    balance[account_name] = 0
+    if account_name in accounts:
+        print('the name is taken please enter other name eg.john_21')
+        register()
+    else:
+        account_password = input('enter your password ')
+        print(f'account created for {account_name}')
+        accounts[account_name] = account_password
+        balance[account_name] = 0
 
 def open_account():
     while True:
